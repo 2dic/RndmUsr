@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <!-- Main Fragment -->
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.rndmusr.presentation.main.MainFragment"
+        android:label="Random User Generator"
+        tools:layout="@layout/fragment_main">
+
+        <action
+            android:id="@+id/action_mainFragment_to_userListFragment"
+            app:destination="@id/userListFragment" />
+
+    </fragment>
+
+    <!-- User List Fragment -->
+    <fragment
+        android:id="@+id/userListFragment"
+        android:name="com.example.rndmusr.presentation.list.UserListFragment"
+        android:label="Saved Users"
+        tools:layout="@layout/fragment_user_list">
+
+        <action
+            android:id="@+id/action_userListFragment_to_userDetailsFragment"
+            app:destination="@id/userDetailsFragment" />
+
+    </fragment>
+
+    <!-- User Details Fragment -->
+    <fragment
+        android:id="@+id/userDetailsFragment"
+        android:name="com.example.rndmusr.presentation.details.UserDetailsFragment"
+        android:label="User Details"
+        tools:layout="@layout/fragment_user_details">
+
+        <argument
+            android:name="userId"
+            app:argType="string" />
+
+    </fragment>
+
+</navigation>
