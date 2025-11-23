@@ -49,16 +49,39 @@ class MainFragment : Fragment() {
     }
 
     private fun setupUI() {
-        binding.btnGenerate.setOnClickListener {
+        binding.btnGenerate.setOnClickListener {view ->
+            view.animate()
+                .scaleX(0.95f)
+                .scaleY(0.95f)
+                .setDuration(100)
+                .withEndAction {
+                    view.animate()
+                        .scaleX(1f)
+                        .scaleY(1f)
+                        .setDuration(100)
+                        .start()
+                }
+                .start()
             generateUser()
-//            Toast.makeText(requireContext(), "Generate clicked", Toast.LENGTH_SHORT).show()
         }
 
         binding.btnViewUsers.setOnClickListener {
             navigateToUserList()
         }
 
-        binding.btnSaveUser.setOnClickListener {
+        binding.btnSaveUser.setOnClickListener {view ->
+            view.animate()
+                .scaleX(0.95f)
+                .scaleY(0.95f)
+                .setDuration(100)
+                .withEndAction {
+                    view.animate()
+                        .scaleX(1f)
+                        .scaleY(1f)
+                        .setDuration(100)
+                        .start()
+                }
+                .start()
             saveCurrentUser()
         }
     }
@@ -100,7 +123,7 @@ class MainFragment : Fragment() {
     private fun navigateToUserList() {
         val userListFragment = UserListFragment()
         requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.nav_host_fragment, userListFragment)
+            .replace(R.id.fragment_container, userListFragment)
             .addToBackStack("user_list")
             .commit()
     }

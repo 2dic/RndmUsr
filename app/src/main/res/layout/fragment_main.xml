@@ -1,164 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="16dp">
 
-    <LinearLayout
+    <!-- Заголовок -->
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginBottom="32dp"
+        android:gravity="center"
+        android:text="Generator"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
-        <!-- Заголовок -->
-        <TextView
-            android:layout_width="match_parent"
+    <!-- Контент -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Gender"
+        android:textSize="16sp" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupGender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radioAny"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Generate Random User"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginBottom="24dp" />
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="Any" />
 
-        <!-- Выбор пола -->
-        <TextView
-            android:layout_width="match_parent"
+        <RadioButton
+            android:id="@+id/radioMale"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Gender"
-            android:textSize="16sp"
-            android:layout_marginBottom="8dp" />
+            android:layout_weight="1"
+            android:text="Male" />
 
-        <RadioGroup
-            android:id="@+id/radioGroupGender"
-            android:layout_width="match_parent"
+        <RadioButton
+            android:id="@+id/radioFemale"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="16dp">
+            android:layout_weight="1"
+            android:text="Female" />
+    </RadioGroup>
 
-            <RadioButton
-                android:id="@+id/radioAny"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Any"
-                android:checked="true" />
+    <!-- Выбор национальности -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Nationality"
+        android:textSize="16sp" />
 
-            <RadioButton
-                android:id="@+id/radioMale"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Male" />
+    <Spinner
+        android:id="@+id/spinnerNationality"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp" />
 
-            <RadioButton
-                android:id="@+id/radioFemale"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Female" />
-        </RadioGroup>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
 
-        <!-- Выбор национальности -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Nationality"
-            android:textSize="16sp"
-            android:layout_marginBottom="8dp" />
+    <TextView
+        android:id="@+id/errorText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Error loading user"
+        android:textSize="16sp"
+        android:visibility="gone" />
 
-        <Spinner
-            android:id="@+id/spinnerNationality"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp" />
+    <LinearLayout
+        android:id="@+id/userContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:visibility="gone">
 
-        <!-- Кнопка генерации -->
-        <Button
-            android:id="@+id/btnGenerate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Generate User"
-            android:textSize="18sp"
-            android:layout_marginBottom="16dp" />
-
-        <!-- Прогресс бар -->
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/ivUser"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:layout_gravity="center"
-            android:visibility="gone" />
+            android:layout_marginBottom="16dp"
+            android:scaleType="centerCrop" />
 
-        <!-- Сообщение об ошибке -->
         <TextView
-            android:id="@+id/errorText"
+            android:id="@+id/tvName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Error loading user"
-            android:textSize="16sp"
+            android:layout_marginBottom="8dp"
             android:gravity="center"
-            android:visibility="gone" />
+            android:text="Name"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-        <!-- Контейнер для пользователя -->
-        <LinearLayout
-            android:id="@+id/userContainer"
+        <TextView
+            android:id="@+id/tvEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone"
-            android:background="@color/white"
-            android:padding="16dp"
-            android:elevation="4dp">
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:text="Email" />
 
-            <ImageView
-                android:id="@+id/ivUser"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_gravity="center"
-                android:scaleType="centerCrop"
-                android:background="@color/gray"
-                android:layout_marginBottom="16dp" />
+        <TextView
+            android:id="@+id/tvPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:text="Phone" />
 
-            <TextView
-                android:id="@+id/tvName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Name"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:layout_marginBottom="8dp" />
-
-            <TextView
-                android:id="@+id/tvEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Email"
-                android:gravity="center"
-                android:layout_marginBottom="8dp" />
-
-            <TextView
-                android:id="@+id/tvPhone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Phone"
-                android:gravity="center"
-                android:layout_marginBottom="16dp" />
-
-            <Button
-                android:id="@+id/btnSaveUser"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Save User" />
-        </LinearLayout>
-
-        <!-- Кнопка просмотра сохраненных -->
         <Button
-            android:id="@+id/btnViewUsers"
+            android:id="@+id/btnSaveUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="View Saved Users"
-            android:layout_marginTop="16dp" />
-
+            android:text="Save User"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:background="@drawable/button_background" />
     </LinearLayout>
-</ScrollView>
+    >
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- Кнопки внизу -->
+    <Button
+        android:id="@+id/btnGenerate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/button_background"
+        android:text="Generate User"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btnViewUsers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_background"
+        android:text="View Saved Users"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+</LinearLayout>

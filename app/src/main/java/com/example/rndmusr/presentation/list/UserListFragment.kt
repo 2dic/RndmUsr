@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rndmusr.databinding.FragmentUserListBinding
 import com.example.rndmusr.presentation.details.UserDetailsFragment
 import com.example.rndmusr.presentation.list.adapter.UserAdapter
+import com.example.rndmusr.presentation.main.MainFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -98,17 +99,26 @@ class UserListFragment : Fragment() {
 
         adapter.submitList(users)
     }
-
+    private fun navigateToGenerator() {
+        val mainFragment = MainFragment()
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, mainFragment)
+            .addToBackStack("generator")
+            .commit()
+    }
     private fun setupClickListeners() {
-        binding.btnGoBack.setOnClickListener {
-            requireActivity().supportFragmentManager.popBackStack()
+        binding.fabAdd.setOnClickListener {
+            navigateToGenerator()
         }
+//        binding.btnGoBack.setOnClickListener {
+//            requireActivity().supportFragmentManager.popBackStack()
+//        }
     }
 
     private fun navigateToUserDetails(userId: String) {
         val userDetailsFragment = UserDetailsFragment.newInstance(userId)
         requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.nav_host_fragment, userDetailsFragment)
+            .replace(R.id.fragment_container, userDetailsFragment)
             .addToBackStack(null)
             .commit()
     }
