@@ -9,12 +9,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.rndmusr.R
 import com.example.rndmusr.databinding.FragmentUserDetailsBinding
 import com.example.rndmusr.presentation.list.UserListFragment
-import com.example.rndmusr.presentation.main.MainFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -25,7 +23,6 @@ class UserDetailsFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: UserDetailsViewModel by viewModels()
-//    private val args: UserDetailsFragmentArgs by navArgs()
     private val userId: String by lazy {
         arguments?.getString(ARG_USER_ID) ?: ""
     }
