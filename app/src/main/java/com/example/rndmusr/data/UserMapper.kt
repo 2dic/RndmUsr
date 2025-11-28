@@ -22,7 +22,7 @@ class UserMapper {
             city = apiUser.location.city,
             state = apiUser.location.state,
             country = apiUser.location.country,
-            postcode = apiUser.location.postcode.toString(),
+            postcode = apiUser.location.postcode,
             latitude = apiUser.location.coordinates.latitude,
             longitude = apiUser.location.coordinates.longitude,
             timezoneOffset = apiUser.location.timezone.offset,

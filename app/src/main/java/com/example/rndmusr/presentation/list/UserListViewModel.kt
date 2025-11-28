@@ -26,20 +26,29 @@ class UserListViewModel @Inject constructor(
 
     fun loadUsers() {
         viewModelScope.launch {
-            userRepository.getUsers().collect { users ->
-                _uiState.value = if (users.isEmpty()) {
-                    UserListUiState.Empty
-                } else {
-                    UserListUiState.Success(users)
+            _uiState.value = UserListUiState.Loading
+            try {
+                userRepository.getUsers().collect { users ->
+                    _uiState.value = if (users.isEmpty()) {
+                        UserListUiState.Empty
+                    } else {
+                        UserListUiState.Success(users)
+                    }
                 }
+            } catch (e: Exception) {
+                _uiState.value = UserListUiState.Error(e.message ?: "Unknown error")
             }
         }
     }
 
     fun deleteUser(user: User) {
         viewModelScope.launch {
-            userRepository.deleteUser(user)
-            // Flow автоматически обновится
+            try {
+                userRepository.deleteUser(user)
+                // Flow автоматически обновится
+            } catch (e: Exception) {
+                // Можно показать ошибку или проигнорировать
+            }
         }
     }
 }
@@ -48,4 +57,5 @@ sealed class UserListUiState {
     object Loading : UserListUiState()
     object Empty : UserListUiState()
     data class Success(val users: List<User>) : UserListUiState()
+    data class Error(val message: String) : UserListUiState()
 }

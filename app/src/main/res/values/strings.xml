@@ -1,3 +1,16 @@
 <resources>
-    <string name="app_name">RndmUsr</string>
+    <string name="app_name">Random User</string>
+    <string name="generate_user">Generate User</string>
+    <string name="view_saved_users">View Saved Users</string>
+    <string name="error_loading_user">Error loading user</string>
+    <string name="no_internet_connection">No internet connection</string>
+    <string name="open_settings">Open Settings</string>
+    <string name="retry">Retry</string>
+    <string name="nationality">Nationality</string>
+    <string name="female">Female</string>
+    <string name="male">Male</string>
+    <string name="any">Any</string>
+    <string name="gender">Gender</string>
+    <string name="generator">Generator</string>
+    <string name="save_user">Save user</string>
 </resources>

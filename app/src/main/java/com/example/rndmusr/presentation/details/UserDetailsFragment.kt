@@ -9,9 +9,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.example.rndmusr.R
 import com.example.rndmusr.databinding.FragmentUserDetailsBinding
+import com.example.rndmusr.presentation.list.UserListFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -22,7 +23,6 @@ class UserDetailsFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: UserDetailsViewModel by viewModels()
-//    private val args: UserDetailsFragmentArgs by navArgs()
     private val userId: String by lazy {
         arguments?.getString(ARG_USER_ID) ?: ""
     }
@@ -40,6 +40,7 @@ class UserDetailsFragment : Fragment() {
 
         loadUser()
         observeViewModel()
+        setupClickListeners()
     }
 
     private fun loadUser() {
@@ -97,6 +98,20 @@ class UserDetailsFragment : Fragment() {
         binding.tvCity.text = user.city
         binding.tvCountry.text = user.country
         binding.tvPostcode.text = "Postcode: ${user.postcode}"
+    }
+
+    private fun navigateToUserList() {
+        val userListFragment = UserListFragment()
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, userListFragment)
+            .addToBackStack("user_list")
+            .commit()
+    }
+
+    private fun setupClickListeners() {
+        binding.fabBack.setOnClickListener {
+            navigateToUserList()
+        }
     }
 
     private fun showErrorState(message: String) {
